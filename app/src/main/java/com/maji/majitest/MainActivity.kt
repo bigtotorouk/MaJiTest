@@ -49,8 +49,20 @@ class MainActivity : AppCompatActivity() {
         //设置适配器
         rl.adapter = DataBeanAdapter(data)
 
-        loadData()
-//        startTask()
+
+        val takeoutOpenHelper = TakeoutOpenHelper(applicationContext)
+        val dao : Dao<DataBean, Int> = takeoutOpenHelper.getDao(DataBean::class.java)
+        if(dao.count()>0){
+            //show last data
+            var bean:DataBean = dao.queryBuilder().orderBy("id", true).queryForFirst()
+            data.clear()
+            data.add(bean)
+            rl.adapter?.notifyDataSetChanged()
+            mHandler.sendEmptyMessageDelayed(MSG_CODE, 5*1000)
+        }else{
+            mHandler.sendEmptyMessageDelayed(MSG_CODE, 0)
+        }
+
     }
 
 //    private fun startTask() {
