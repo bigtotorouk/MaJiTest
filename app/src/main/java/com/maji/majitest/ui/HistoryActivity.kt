@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.j256.ormlite.dao.Dao
 import com.maji.majitest.adapter.DataBeanAdapter
 import com.maji.majitest.db.TakeoutOpenHelper
-import com.maji.majitest.model.DataBean
+import com.maji.majitest.bean.DataBean
 import kotlinx.android.synthetic.main.activity_main.*
 
 class HistoryActivity : AppCompatActivity() {

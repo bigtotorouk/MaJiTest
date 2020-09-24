@@ -15,11 +15,10 @@ import com.maji.majitest.adapter.DataBeanAdapter
 import com.maji.majitest.api.AppClientManager
 import com.maji.majitest.api.GithubApi
 import com.maji.majitest.db.TakeoutOpenHelper
-import com.maji.majitest.model.DataBean
+import com.maji.majitest.bean.DataBean
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Response
-import javax.security.auth.callback.Callback
 
 
 class MainActivity : AppCompatActivity() {
@@ -54,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         val dao : Dao<DataBean, Int> = takeoutOpenHelper.getDao(DataBean::class.java)
         if(dao.count()>0){
             //show last data
-            var bean:DataBean = dao.queryBuilder().orderBy("id", true).queryForFirst()
+            var bean: DataBean = dao.queryBuilder().orderBy("id", true).queryForFirst()
             data.clear()
             data.add(bean)
             rl.adapter?.notifyDataSetChanged()
@@ -96,7 +95,8 @@ class MainActivity : AppCompatActivity() {
                         rl.adapter?.notifyDataSetChanged()
 
                         val takeoutOpenHelper = TakeoutOpenHelper(applicationContext)
-                        val dao : Dao<DataBean, Int> = takeoutOpenHelper.getDao(DataBean::class.java)
+                        val dao : Dao<DataBean, Int> = takeoutOpenHelper.getDao(
+                            DataBean::class.java)
                         dao.create(bean)
                         Log.v(TAG, "insert success")
 
