@@ -1,18 +1,5 @@
 package com.maji.majitest.mvp.base
 
-import android.content.Context
-import androidx.annotation.StringRes
-
-interface BaseMvpView {
-
-    fun getContext(): Context
-
-    fun showError(error: String?)
-
-    fun showError(@StringRes stringResId: Int)
-
-    fun showMessage(@StringRes srtResId: Int)
-
-    fun showMessage(message: String)
-
+interface BaseView{
+    //TODO:view里相关操作
 }

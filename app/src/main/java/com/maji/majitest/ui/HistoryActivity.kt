@@ -1,10 +1,11 @@
-package com.maji.majitest
+package com.maji.majitest.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.j256.ormlite.dao.Dao
+import com.maji.majitest.R
 import com.maji.majitest.adapter.DataBeanAdapter
 import com.maji.majitest.db.TakeoutOpenHelper
 import com.maji.majitest.bean.DataBean

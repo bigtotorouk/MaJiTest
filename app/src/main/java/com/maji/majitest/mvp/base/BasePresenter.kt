@@ -1,24 +1,36 @@
 package com.maji.majitest.mvp.base
 
-abstract class BasePresenter<V : BaseView> {
-    var view: WeakReference<V>? = null
+import android.content.Context
+
+abstract class BasePresenter<V, M>(context:Context) {
+    var view: V? = null
+
+    var model: M? = null
+
+    var context:Context
+
+    init {
+        this.context = context
+        this.model = this.initModel()
+    }
 
     fun bindView(view: V) {
-        this.view = WeakReference(view)
+        this.view = view
     }
 
     fun isBind(): Boolean {
-        return view != null && view!!.get() != null
+        return view != null
     }
 
     fun unBindView() {
         if (isBind()) {
-            view!!.clear()
             view = null
         }
     }
 
     fun obtainView(): V? {
-        return if (isBind()) view!!.get() else null
+        return if (isBind()) view else null
     }
+
+    abstract fun initModel(): M
 }

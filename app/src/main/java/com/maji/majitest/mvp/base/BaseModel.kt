@@ -2,6 +2,10 @@ package com.maji.majitest.mvp.base
 
 import java.lang.ref.WeakReference
 
-abstract class BaseModle<P:BasePresenter>{
-    var p: WeakReference<P>? = null
+abstract class BaseModel<P>(mPresenter:P){
+    var presenter:P
+
+    init {
+        this.presenter = mPresenter
+    }
 }

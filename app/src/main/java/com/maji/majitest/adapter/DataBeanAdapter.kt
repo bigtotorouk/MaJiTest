@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.maji.majitest.R
-import com.maji.majitest.model.DataBean
+import com.maji.majitest.bean.DataBean
 
 class DataBeanAdapter(private var data:List<DataBean>): RecyclerView.Adapter<DataBeanAdapter.ViewHolder>() {
 
@@ -28,7 +28,7 @@ class DataBeanAdapter(private var data:List<DataBean>): RecyclerView.Adapter<Dat
         //获取当前项的元素
         val bean = data[position]
         holder.titleTxt.text = bean.current_user_url
-        holder.timeTxt.text = "ID:"+bean.id.toString()
+        holder.timeTxt.text = "第ID:"+bean.id.toString()+"次请求"
     }
 
     override fun getItemCount(): Int {

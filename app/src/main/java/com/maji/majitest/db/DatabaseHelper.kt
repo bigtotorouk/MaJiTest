@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper
 import com.j256.ormlite.support.ConnectionSource
 import com.j256.ormlite.table.TableUtils
-import com.maji.majitest.model.DataBean
+import com.maji.majitest.bean.DataBean
 
 
 //TODO 参数一 上下文，参数二 数据库名，参数三 工厂 null默认为系统工厂，参数四 版本号

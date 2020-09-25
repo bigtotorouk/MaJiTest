@@ -1,40 +1,35 @@
 package com.maji.majitest.mvp.base
 
-import android.content.Context
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-abstract class BaseMvpActivity<in V : BaseMvpView, T : BaseMvpPresenter<V>>
-    : AppCompatActivity(), BaseMvpView {
-
+abstract class BaseActivity<V, M, P:BasePresenter<V, M>>: AppCompatActivity() {
+    var presenter: P? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mPresenter.attachView(this as V)
+        setContentView(getContentId())
+        presenter = initPresenter()
+        presenter!!.bindView(this as V)
+        initView()
+        initListener()
     }
 
-    override fun getContext(): Context = this
 
-    protected abstract var mPresenter: T
+    abstract fun getContentId(): Int
+    abstract fun initView()
+    abstract fun initListener()
+    abstract fun initPresenter(): P
 
-    override fun showError(error: String?) {
-        Toast.makeText(this, error, Toast.LENGTH_LONG).show()
-    }
-
-    override fun showError(stringResId: Int) {
-        Toast.makeText(this, stringResId, Toast.LENGTH_LONG).show()
-    }
-
-    override fun showMessage(srtResId: Int) {
-        Toast.makeText(this, srtResId, Toast.LENGTH_LONG).show()
-    }
-
-    override fun showMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-    }
+//    /**可触摸时执行的操作**/
+//    abstract fun doOnResume()
+//
+//    override fun onResume() {
+//        super.onResume()
+//        doOnResume()
+//    }
 
     override fun onDestroy() {
         super.onDestroy()
-        mPresenter.detachView()
+        presenter?.unBindView()
     }
 }
